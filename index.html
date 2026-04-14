@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DJ Mario McQuay — Music that moves you...</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: {
+              purple: '#b347ff',
+              blue:   '#00d4ff',
+              pink:   '#ff2d78',
+            },
+            dark: {
+              950: '#050508',
+              900: '#0a090f',
+              800: '#100e1a',
+              700: '#18152a',
+              600: '#211d38',
+            }
+          },
+          fontFamily: {
+            display: ['Impact', 'Haettenschweiler', 'Arial Narrow Bold', 'sans-serif'],
+            sans:    ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4,0,0.6,1) infinite',
+            'float':      'float 6s ease-in-out infinite',
+            'scan':       'scan 8s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%,100%': { transform: 'translateY(0px)' },
+              '50%':     { transform: 'translateY(-12px)' },
+            },
+            scan: {
+              '0%':   { backgroundPosition: '0% 0%' },
+              '100%': { backgroundPosition: '0% 100%' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+    * { box-sizing: border-box; }
+
+    body {
+      background-color: #050508;
+      color: #e2e2f0;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Neon glow utilities ── */
+    .glow-purple { text-shadow: 0 0 20px #b347ff, 0 0 60px #b347ff55; }
+    .glow-blue   { text-shadow: 0 0 20px #00d4ff, 0 0 60px #00d4ff55; }
+    .glow-pink   { text-shadow: 0 0 20px #ff2d78, 0 0 60px #ff2d7855; }
+    .glow-box-purple { box-shadow: 0 0 24px #b347ff66, inset 0 0 24px #b347ff22; }
+    .glow-box-blue   { box-shadow: 0 0 24px #00d4ff66, inset 0 0 24px #00d4ff22; }
+    .border-neon-purple { border-color: #b347ff; }
+    .border-neon-blue   { border-color: #00d4ff; }
+    .border-neon-pink   { border-color: #ff2d78; }
+
+    /* ── Hero animated grid overlay ── */
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(179,71,255,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(179,71,255,0.07) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridPulse 6s ease-in-out infinite;
+    }
+    @keyframes gridPulse {
+      0%,100% { opacity: 0.6; }
+      50%      { opacity: 1; }
+    }
+
+    /* ── Scanline effect ── */
+    .scanlines::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.18) 2px,
+        rgba(0,0,0,0.18) 4px
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ── Nav blur ── */
+    .nav-blur {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(5,5,8,0.82);
+      border-bottom: 1px solid rgba(179,71,255,0.25);
+    }
+
+    /* ── Gradient text ── */
+    .text-gradient-purple-blue {
+      background: linear-gradient(90deg, #b347ff 0%, #00d4ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .text-gradient-pink-purple {
+      background: linear-gradient(90deg, #ff2d78 0%, #b347ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── CTA button ── */
+    .btn-neon {
+      position: relative;
+      display: inline-block;
+      padding: 14px 40px;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      border: 2px solid #b347ff;
+      background: linear-gradient(135deg, rgba(179,71,255,0.25), rgba(0,212,255,0.15));
+      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+      transition: all 0.3s ease;
+      box-shadow: 0 0 28px rgba(179,71,255,0.4), inset 0 0 20px rgba(179,71,255,0.1);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-neon:hover {
+      background: linear-gradient(135deg, rgba(179,71,255,0.55), rgba(0,212,255,0.35));
+      box-shadow: 0 0 48px rgba(179,71,255,0.7), inset 0 0 30px rgba(179,71,255,0.2);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .btn-neon-outline {
+      position: relative;
+      display: inline-block;
+      padding: 12px 28px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #00d4ff;
+      border: 1.5px solid #00d4ff;
+      background: rgba(0,212,255,0.06);
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-neon-outline:hover {
+      background: rgba(0,212,255,0.18);
+      box-shadow: 0 0 24px rgba(0,212,255,0.4);
+      color: #fff;
+    }
+
+    /* ── Section dividers ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #b347ff44, #00d4ff44, transparent);
+    }
+
+    /* ── Card base ── */
+    .card-dark {
+      background: linear-gradient(135deg, #100e1a, #18152a);
+      border: 1px solid rgba(179,71,255,0.2);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .card-dark:hover {
+      border-color: rgba(179,71,255,0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(179,71,255,0.2);
+    }
+
+    /* ── Gallery image hover ── */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+    }
+    .gallery-item img {
+      transition: transform 0.5s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 12px 14px;
+      background: linear-gradient(transparent, rgba(5,5,8,0.92));
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+    .gallery-item:hover .gallery-caption {
+      transform: translateY(0);
+    }
+
+    /* ── Form inputs ── */
+    .input-neon {
+      background: rgba(16,14,26,0.8);
+      border: 1px solid rgba(179,71,255,0.3);
+      color: #e2e2f0;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      outline: none;
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+    .input-neon:focus {
+      border-color: #b347ff;
+      box-shadow: 0 0 16px rgba(179,71,255,0.3);
+    }
+    .input-neon::placeholder { color: #5a5870; }
+
+    /* ── Waveform decoration ── */
+    .waveform-bar {
+      display: inline-block;
+      width: 3px;
+      background: linear-gradient(#b347ff, #00d4ff);
+      border-radius: 2px;
+      animation: wave 1.4s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%,100% { transform: scaleY(0.4); }
+      50%      { transform: scaleY(1); }
+    }
+
+    /* ── Stars ── */
+    .star { color: #f5c518; }
+
+    /* ── Mobile menu ── */
+    #mobile-menu { display: none; }
+    #mobile-menu.open { display: flex; }
+
+    /* ── Floating particles (CSS only) ── */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: floatParticle linear infinite;
+      opacity: 0;
+    }
+    @keyframes floatParticle {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.3; }
+      100% { transform: translateY(-100px) scale(1); opacity: 0; }
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a090f; }
+    ::-webkit-scrollbar-thumb { background: #b347ff88; border-radius: 3px; }
+
+    /* ── Section label ── */
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #b347ff;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav class="nav-blur fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <!-- Waveform icon -->
+        <div class="flex items-end gap-0.5 h-7">
+          <span class="waveform-bar h-2" style="animation-delay:0s"></span>
+          <span class="waveform-bar h-5" style="animation-delay:0.1s"></span>
+          <span class="waveform-bar h-3" style="animation-delay:0.2s"></span>
+          <span class="waveform-bar h-7" style="animation-delay:0.3s"></span>
+          <span class="waveform-bar h-4" style="animation-delay:0.4s"></span>
+          <span class="waveform-bar h-6" style="animation-delay:0.5s"></span>
+          <span class="waveform-bar h-2" style="animation-delay:0.6s"></span>
+        </div>
+        <span class="font-display text-xl tracking-widest text-white group-hover:text-gradient-purple-blue transition-all">
+          DJ MARIO <span class="text-gradient-purple-blue">McQUAY</span>
+        </span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="hidden md:flex items-center gap-8">
+        <li><a href="#about"        class="text-sm font-medium tracking-widest text-gray-400 hover:text-neon-blue uppercase transition-colors">About</a></li>
+        <li><a href="#testimonials" class="text-sm font-medium tracking-widest text-gray-400 hover:text-neon-blue uppercase transition-colors">Reviews</a></li>
+        <li><a href="#gallery"      class="text-sm font-medium tracking-widest text-gray-400 hover:text-neon-blue uppercase transition-colors">Gallery</a></li>
+        <li><a href="#contact"      class="text-sm font-medium tracking-widest text-gray-400 hover:text-neon-blue uppercase transition-colors">Contact</a></li>
+        <li>
+          <a href="#contact" class="btn-neon-outline" style="font-size:0.78rem; padding:9px 22px;">
+            Book Now
+          </a>
+        </li>
+      </ul>
+
+      <!-- Hamburger -->
+      <button id="hamburger" class="md:hidden text-gray-300 hover:text-white focus:outline-none p-2" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path id="ham-open"   stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          <path id="ham-close"  stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" style="display:none"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden flex-col pb-4 gap-1">
+      <a href="#about"        class="block px-4 py-3 text-sm tracking-widest text-gray-300 hover:text-neon-blue uppercase transition-colors" onclick="closeMobileMenu()">About</a>
+      <a href="#testimonials" class="block px-4 py-3 text-sm tracking-widest text-gray-300 hover:text-neon-blue uppercase transition-colors" onclick="closeMobileMenu()">Reviews</a>
+      <a href="#gallery"      class="block px-4 py-3 text-sm tracking-widest text-gray-300 hover:text-neon-blue uppercase transition-colors" onclick="closeMobileMenu()">Gallery</a>
+      <a href="#contact"      class="block px-4 py-3 text-sm tracking-widest text-gray-300 hover:text-neon-blue uppercase transition-colors" onclick="closeMobileMenu()">Contact</a>
+      <div class="px-4 pt-2">
+        <a href="#contact" class="btn-neon w-full text-center" onclick="closeMobileMenu()">Book Now</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden scanlines">
+
+  <!-- Deep background -->
+  <div class="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-800 to-dark-900"></div>
+
+  <!-- Radial glow blobs -->
+  <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20 animate-pulse-slow"
+       style="background: radial-gradient(circle, #b347ff 0%, transparent 70%); filter: blur(60px);"></div>
+  <div class="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full opacity-15 animate-pulse-slow"
+       style="background: radial-gradient(circle, #00d4ff 0%, transparent 70%); filter: blur(60px); animation-delay: 2s;"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10"
+       style="background: radial-gradient(circle, #ff2d78 0%, transparent 65%); filter: blur(80px);"></div>
+
+  <!-- Grid overlay -->
+  <div class="absolute inset-0 hero-grid"></div>
+
+  <!-- Floating particles -->
+  <div class="absolute inset-0 pointer-events-none" id="particles"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4 max-w-5xl mx-auto" style="z-index: 2;">
+
+    <!-- Pre-title badge -->
+    <div class="inline-flex items-center gap-2 mb-8 px-5 py-2 rounded-full border border-neon-purple text-neon-purple text-xs tracking-widest uppercase font-semibold"
+         style="background: rgba(179,71,255,0.1);">
+      <span class="w-1.5 h-1.5 rounded-full bg-neon-purple animate-pulse inline-block"></span>
+      Available for Bookings 2025 &amp; 2026
+    </div>
+
+    <!-- Main title -->
+    <h1 class="font-display text-7xl sm:text-8xl lg:text-9xl tracking-widest leading-none mb-2 text-white glow-purple">
+      DJ MARIO
+    </h1>
+    <h1 class="font-display text-6xl sm:text-7xl lg:text-8xl tracking-widest leading-none mb-8 text-gradient-purple-blue">
+      McQUAY
+    </h1>
+
+    <!-- Waveform decorative bars -->
+    <div class="flex items-end justify-center gap-1 mb-8 h-12">
+      <span class="waveform-bar" style="height:14px; animation-delay:0.0s"></span>
+      <span class="waveform-bar" style="height:30px; animation-delay:0.07s"></span>
+      <span class="waveform-bar" style="height:40px; animation-delay:0.14s"></span>
+      <span class="waveform-bar" style="height:48px; animation-delay:0.21s"></span>
+      <span class="waveform-bar" style="height:36px; animation-delay:0.28s"></span>
+      <span class="waveform-bar" style="height:20px; animation-delay:0.35s"></span>
+      <span class="waveform-bar" style="height:44px; animation-delay:0.42s"></span>
+      <span class="waveform-bar" style="height:48px; animation-delay:0.49s"></span>
+      <span class="waveform-bar" style="height:32px; animation-delay:0.56s"></span>
+      <span class="waveform-bar" style="height:18px; animation-delay:0.63s"></span>
+      <span class="waveform-bar" style="height:38px; animation-delay:0.70s"></span>
+      <span class="waveform-bar" style="height:46px; animation-delay:0.77s"></span>
+      <span class="waveform-bar" style="height:28px; animation-delay:0.84s"></span>
+      <span class="waveform-bar" style="height:42px; animation-delay:0.91s"></span>
+      <span class="waveform-bar" style="height:16px; animation-delay:0.98s"></span>
+    </div>
+
+    <!-- Slogan -->
+    <p class="text-2xl sm:text-3xl lg:text-4xl font-light tracking-widest text-gray-200 mb-12 italic glow-blue">
+      "Music that moves you..."
+    </p>
+
+    <!-- Subtext -->
+    <p class="text-gray-400 text-lg max-w-xl mx-auto mb-12 leading-relaxed">
+      A veteran midwest DJ with over 25 years of experience performing at clubs, weddings, events &amp; private parties across the country.<br>
+      Over two decades of keeping dancefloors alive.
+    </p>
+
+    <!-- CTA buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+      <a href="#contact" class="btn-neon text-base">
+        Book DJ Mario Now
+      </a>
+      <a href="#gallery" class="btn-neon-outline">
+        View Gallery
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="mt-16 flex flex-col items-center gap-2 text-gray-600">
+      <span class="text-xs tracking-widest uppercase">Scroll</span>
+      <div class="w-px h-10 bg-gradient-to-b from-neon-purple to-transparent animate-bounce"></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ══════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════ -->
+<section id="about" class="py-24 px-4" style="background: linear-gradient(180deg, #050508 0%, #100e1a 100%);">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Section header -->
+    <div class="text-center mb-16">
+      <p class="section-label mb-3">The Artist</p>
+      <h2 class="text-5xl font-display tracking-widest text-white">ABOUT <span class="text-gradient-purple-blue">MARIO</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Bio -->
+      <div class="order-2 lg:order-1">
+        <div class="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-neon-blue text-neon-blue text-xs tracking-widest uppercase"
+             style="background: rgba(0,212,255,0.08);">
+          DJ &bull; Producer &bull; Performer
+        </div>
+
+        <h3 class="text-3xl font-bold text-white mb-6 leading-snug">
+          Born to Rock <br>
+          <span class="text-gradient-pink-purple">Every Dancefloor</span>
+        </h3>
+
+        <p class="text-gray-300 text-base leading-relaxed mb-5">
+          Mario McQuay is a veteran DJ with over 25 years of experience performing at events across 
+          the country. He attributes his success to a natural talent for reading the crowd and a deep 
+          understanding of diverse musical styles, ranging from disco, R&B, and funk to house music.
+        </p>
+        <p class="text-gray-300 text-base leading-relaxed mb-5">
+          Mario’s passion for music began at age five, influenced by artists like Parliament, 
+          Donna Summer, and Curtis Mayfield. His career has grown from childhood experimentation 
+          to professional sets for weddings, fashion shows, and boat parties. He has also hosted 
+          podcasts and performed on live radio, including <em class="text-neon-blue">WGCI Radio 107.5FM</em> 
+          in Chicago and <em class="text-neon-blue">88.3 FM (The Edge)</em>  in Springfield.
+        </p>
+        <p class="text-gray-300 text-base leading-relaxed mb-8">
+          Driven by the energy of the dance floor, Mario specializes in mixing music in key with smooth 
+          vocals and powerful basslines to create an unforgettable experience for his audience.
+        </p>
+
+        <!-- Stats row -->
+        <div class="grid grid-cols-3 gap-4 mb-8">
+          <div class="text-center p-4 card-dark rounded-lg">
+            <p class="text-3xl font-bold text-gradient-purple-blue">25+</p>
+            <p class="text-xs text-gray-500 tracking-widest uppercase mt-1">Years Active</p>
+          </div>
+          <div class="text-center p-4 card-dark rounded-lg">
+            <p class="text-3xl font-bold text-gradient-purple-blue">800+</p>
+            <p class="text-xs text-gray-500 tracking-widest uppercase mt-1">Events</p>
+          </div>
+          <div class="text-center p-4 card-dark rounded-lg">
+            <p class="text-3xl font-bold text-gradient-purple-blue">50K+</p>
+            <p class="text-xs text-gray-500 tracking-widest uppercase mt-1">Fans</p>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn-neon">Get In Touch</a>
+      </div>
+
+      <!-- Video embed -->
+      <div class="order-1 lg:order-2 relative">
+        <!-- Glow behind video -->
+        <div class="absolute -inset-4 rounded-2xl opacity-40"
+             style="background: linear-gradient(135deg, #b347ff33, #00d4ff33); filter: blur(30px);"></div>
+
+        <div class="relative rounded-xl overflow-hidden border border-neon-purple glow-box-purple">
+          <video
+            class="w-full aspect-video object-cover"
+            poster="./img/IMG_2274-2.jpg"
+            controls
+            preload="metadata"
+          >
+            <source src="./media/MarioInterview.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <!-- Video overlay label -->
+          <div class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs tracking-widest font-semibold uppercase"
+               style="background: rgba(179,71,255,0.85); color: #fff;">
+            ▶ Watch Live Set
+          </div>
+        </div>
+
+        <!-- Genre tags below video -->
+        <div class="flex flex-wrap gap-2 mt-5 justify-center">
+          <span class="px-3 py-1 rounded-full text-xs font-medium tracking-widest border border-neon-purple text-neon-purple" style="background:rgba(179,71,255,0.1);">Hip-Hop</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium tracking-widest border border-neon-blue text-neon-blue" style="background:rgba(0,212,255,0.1);">House</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium tracking-widest border border-neon-pink text-neon-pink" style="background:rgba(255,45,120,0.1);">Afrobeats</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium tracking-widest border border-neon-purple text-neon-purple" style="background:rgba(179,71,255,0.1);">R&amp;B</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium tracking-widest border border-neon-blue text-neon-blue" style="background:rgba(0,212,255,0.1);">Top 40</span>
+          <span class="px-3 py-1 rounded-full text-xs font-medium tracking-widest border border-neon-pink text-neon-pink" style="background:rgba(255,45,120,0.1);">EDM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ══════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════ -->
+<section id="testimonials" class="py-24 px-4" style="background: #0a090f;">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-16">
+      <p class="section-label mb-3">What People Say</p>
+      <h2 class="text-5xl font-display tracking-widest text-white">CLIENT <span class="text-gradient-purple-blue">REVIEWS</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Testimonial 1 -->
+      <div class="card-dark rounded-xl p-8 flex flex-col gap-5 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-neon-purple to-transparent"></div>
+        <!-- Quote mark -->
+        <div class="text-7xl leading-none font-serif text-neon-purple opacity-30 absolute top-4 right-6 select-none">"</div>
+        <!-- Stars -->
+        <div class="flex gap-1">
+          <span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span>
+        </div>
+        <p class="text-gray-300 text-base leading-relaxed italic z-10">
+          "Mario was fantastic to work with!!  He made sure to play our requested music, 
+          and did a great job reading the crowd to see what other songs should be played 
+          to keep everyone on the dance floor.  Highly recommend!"
+        </p>
+        <div class="flex items-center gap-3 mt-auto pt-4 border-t border-white border-opacity-10">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
+               style="background: linear-gradient(135deg, #b347ff, #00d4ff); color: #fff;">KB</div>
+          <div>
+            <p class="text-white font-semibold text-sm">Katie B.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 (center - featured) -->
+      <div class="card-dark rounded-xl p-8 flex flex-col gap-5 relative overflow-hidden"
+           style="border-color: rgba(0,212,255,0.5); box-shadow: 0 0 40px rgba(0,212,255,0.15);">
+        <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-neon-blue to-transparent"></div>
+        <div class="absolute -top-2 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full text-xs font-semibold tracking-widest uppercase"
+             style="background: rgba(0,212,255,0.2); border: 1px solid #00d4ff; color: #00d4ff;">Top Review</div>
+        <div class="text-7xl leading-none font-serif text-neon-blue opacity-30 absolute top-4 right-6 select-none">"</div>
+        <div class="flex gap-1 mt-4">
+          <span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span>
+        </div>
+        <p class="text-gray-300 text-base leading-relaxed italic z-10">
+          "We worked with DJ Mario, and he was fantastic and everything we could have hoped for.  
+          He is an excellent collaborator, was kind and thoughtful throughout the planning process, 
+          and is a skilled artist who wove together a beastiful night of celebration and dancing.  
+          Mario lets the music talk, and is able to facilitage a special space through his craft.  
+          We are grateful and would definitely recommend!."
+        </p>
+        <div class="flex items-center gap-3 mt-auto pt-4 border-t border-white border-opacity-10">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
+               style="background: linear-gradient(135deg, #00d4ff, #b347ff); color: #fff;">JE</div>
+          <div>
+            <p class="text-white font-semibold text-sm">Jimmy E.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="card-dark rounded-xl p-8 flex flex-col gap-5 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-neon-pink to-transparent"></div>
+        <div class="text-7xl leading-none font-serif text-neon-pink opacity-30 absolute top-4 right-6 select-none">"</div>
+        <div class="flex gap-1">
+          <span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span><span class="star text-xl">★</span>
+        </div>
+        <p class="text-gray-300 text-base leading-relaxed italic z-10">
+          "Mario was awesome!!!"
+        </p>
+        <div class="flex items-center gap-3 mt-auto pt-4 border-t border-white border-opacity-10">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
+               style="background: linear-gradient(135deg, #ff2d78, #b347ff); color: #fff;">OS</div>
+          <div>
+            <p class="text-white font-semibold text-sm">Orlando Smith Jr.</p>
+            <p class="text-gray-500 text-xs tracking-wide">Retirement Party: Chicago, IL</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rating summary bar -->
+    <div class="mt-14 flex flex-col sm:flex-row items-center justify-center gap-8 p-8 rounded-2xl"
+         style="background: linear-gradient(135deg, rgba(179,71,255,0.1), rgba(0,212,255,0.08)); border: 1px solid rgba(179,71,255,0.25);">
+      <div class="text-center">
+        <p class="text-6xl font-bold text-white">5.0</p>
+        <div class="flex justify-center gap-1 mt-1">
+          <span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span><span class="star text-lg">★</span>
+        </div>
+        <p class="text-gray-500 text-xs mt-1 tracking-wide">Average Rating</p>
+      </div>
+      <div class="hidden sm:block w-px h-16 bg-white opacity-10"></div>
+      <div class="text-center">
+        <p class="text-5xl font-bold text-gradient-purple-blue">200+</p>
+        <p class="text-gray-500 text-xs mt-2 tracking-wide">Verified Reviews</p>
+      </div>
+      <div class="hidden sm:block w-px h-16 bg-white opacity-10"></div>
+      <div class="text-center">
+        <p class="text-5xl font-bold text-gradient-pink-purple">100%</p>
+        <p class="text-gray-500 text-xs mt-2 tracking-wide">Would Rebook</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ══════════════════════════════════════════
+     GALLERY
+══════════════════════════════════════════ -->
+<section id="gallery" class="py-24 px-4" style="background: linear-gradient(180deg, #0a090f 0%, #100e1a 100%);">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-16">
+      <p class="section-label mb-3">On The Decks</p>
+      <h2 class="text-5xl font-display tracking-widest text-white">EVENT <span class="text-gradient-purple-blue">GALLERY</span></h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Photo 1 -->
+      <div class="gallery-item rounded-xl overflow-hidden border border-neon-purple border-opacity-20 hover:border-opacity-60 transition-all duration-300" style="box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+        <img src="./img/image1.png" alt="House in the field class="w-full h-64 object-cover" loading="lazy" />
+        <div class="gallery-caption">
+          <p class="text-white font-semibold text-sm">House in the Field</p>
+          <p class="text-gray-400 text-xs tracking-wide">Laclede's Landing · St. Louis, MO</p>
+        </div>
+      </div>
+
+      <!-- Photo 2 -->
+      <div class="gallery-item rounded-xl overflow-hidden border border-neon-blue border-opacity-20 hover:border-opacity-60 transition-all duration-300" style="box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+        <img src="./img/image2.png" alt="Neon Nights Festival" class="w-full h-64 object-cover" loading="lazy" />
+        <div class="gallery-caption">
+          <p class="text-white font-semibold text-sm">Wedding Reception</p>
+          <p class="text-gray-400 text-xs tracking-wide">Forest Park Golf Course · Forest Park, MO</p>
+        </div>
+      </div>
+
+      <!-- Photo 3 -->
+      <div class="gallery-item rounded-xl overflow-hidden border border-neon-pink border-opacity-20 hover:border-opacity-60 transition-all duration-300" style="box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+        <img src="./img/image3.png" alt="Skyline Rooftop Soirée" class="w-full h-64 object-cover" loading="lazy" />
+        <div class="gallery-caption">
+          <p class="text-white font-semibold text-sm">Wedding Reception</p>
+          <p class="text-gray-400 text-xs tracking-wide">Bar None · Springfield, IL.</p>
+        </div>
+      </div>
+
+      <!-- Photo 4 -->
+      <div class="gallery-item rounded-xl overflow-hidden border border-neon-purple border-opacity-20 hover:border-opacity-60 transition-all duration-300" style="box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+        <img src="./img/image4.png" alt="White Party Miami" class="w-full h-64 object-cover" loading="lazy" />
+        <div class="gallery-caption">
+          <p class="text-white font-semibold text-sm">Wedding Reception</p>
+          <p class="text-gray-400 text-xs tracking-wide">The Historic John B. Busch Brewery Event Center · Washington, MO</p>
+        </div>
+      </div>
+
+      <!-- Photo 5 -->
+      <div class="gallery-item rounded-xl overflow-hidden border border-neon-blue border-opacity-20 hover:border-opacity-60 transition-all duration-300" style="box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+        <img src="./img/image5.png" alt="The Torres Wedding" class="w-full h-64 object-cover" loading="lazy" />
+        <div class="gallery-caption">
+          <p class="text-white font-semibold text-sm">Outdoor House Event
+          <p class="text-gray-400 text-xs tracking-wide">Washington Park · Springfield, IL</p>
+        </div>
+      </div>
+
+      <!-- Photo 6 -->
+      <div class="gallery-item rounded-xl overflow-hidden border border-neon-pink border-opacity-20 hover:border-opacity-60 transition-all duration-300" style="box-shadow: 0 4px 24px rgba(0,0,0,0.5);">
+        <img src="./img/image6.png" alt="Ultra Miami Afterparty" class="w-full h-64 object-cover" loading="lazy" />
+        <div class="gallery-caption">
+          <p class="text-white font-semibold text-sm">Ultra Miami Afterparty</p>
+          <p class="text-gray-400 text-xs tracking-wide">LIV Nightclub · Miami Beach</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hover hint -->
+    <p class="text-center text-gray-600 text-xs tracking-widest uppercase mt-8">Hover images to reveal details</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ══════════════════════════════════════════
+     CONTACT / BOOKING
+══════════════════════════════════════════ -->
+<section id="contact" class="py-24 px-4" style="background: #050508;">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="text-center mb-16">
+      <p class="section-label mb-3">Ready to Party?</p>
+      <h2 class="text-5xl font-display tracking-widest text-white mb-4">
+        BOOK <span class="text-gradient-purple-blue">DJ MARIO McQUAY</span>
+      </h2>
+      <p class="text-gray-400 max-w-xl mx-auto text-base leading-relaxed">
+        Fill out the form below and DJ Mario's team will get back to you within 24 hours
+        to discuss your event, pricing, and availability.
+      </p>
+    </div>
+
+    <!-- Card wrapper -->
+    <div class="rounded-2xl p-8 sm:p-12 relative overflow-hidden"
+         style="background: linear-gradient(135deg, #100e1a, #18152a); border: 1px solid rgba(179,71,255,0.3); box-shadow: 0 0 60px rgba(179,71,255,0.1);">
+
+      <!-- Top glow line -->
+      <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-neon-purple via-neon-blue to-neon-pink"></div>
+
+      <form id="contact-form" onsubmit="handleSubmit(event)" novalidate>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+
+          <!-- Name -->
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold tracking-widest uppercase text-gray-400">Your Name *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="input-neon"
+              placeholder="First &amp; Last Name"
+              required
+            />
+          </div>
+
+          <!-- Email -->
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold tracking-widest uppercase text-gray-400">Email Address *</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="input-neon"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <!-- Event Date -->
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold tracking-widest uppercase text-gray-400">Event Date *</label>
+            <input
+              type="date"
+              id="event-date"
+              name="event_date"
+              class="input-neon"
+              required
+              style="color-scheme: dark;"
+            />
+          </div>
+
+          <!-- Event Type -->
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold tracking-widest uppercase text-gray-400">Event Type</label>
+            <select id="event-type" name="event_type" class="input-neon" style="cursor:pointer;">
+              <option value="" disabled selected>Select event type...</option>
+              <option value="wedding">Wedding / Reception</option>
+              <option value="corporate">Corporate Event / Gala</option>
+              <option value="birthday">Birthday Party</option>
+              <option value="club">Club / Venue Night</option>
+              <option value="festival">Festival / Concert</option>
+              <option value="private">Private Party</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Message -->
+        <div class="flex flex-col gap-2 mb-8">
+          <label class="text-xs font-semibold tracking-widest uppercase text-gray-400">Tell Us About Your Event *</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            class="input-neon resize-none"
+            placeholder="Event venue, expected guest count, music preferences, special requests..."
+            required
+          ></textarea>
+        </div>
+
+        <!-- Submit button -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <button type="submit" class="btn-neon text-base px-10 py-4" style="clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);">
+            Send Booking Request ✦
+          </button>
+          <p class="text-gray-500 text-xs leading-relaxed">
+            We respond within 24 hours.<br>
+            No spam — ever.
+          </p>
+        </div>
+
+        <!-- Success message (hidden) -->
+        <div id="form-success" class="hidden mt-6 p-5 rounded-lg text-center"
+             style="background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.4);">
+          <p class="text-neon-blue font-semibold text-lg mb-1">✓ Request Sent!</p>
+          <p class="text-gray-300 text-sm">Thank you! DJ Mario's team will be in touch within 24 hours.</p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Contact info chips -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-10">
+      <div class="flex items-center gap-2 text-gray-400 text-sm">
+        <span class="text-neon-purple">✆</span>
+        <span>+1 (314) 604 - 2395</span>
+      </div>
+      <div class="hidden sm:block w-px h-4 bg-white opacity-20"></div>
+      <div class="flex items-center gap-2 text-gray-400 text-sm">
+        <span class="text-neon-blue">✉</span>
+        <span>mixmastermcquay@gmail.com</span>
+      </div>
+      <div class="hidden sm:block w-px h-4 bg-white opacity-20"></div>
+      <div class="flex items-center gap-2 text-gray-400 text-sm">
+        <span class="text-neon-pink">⦿</span>
+        <span>St. Louis, MO - Springfield, IL - Chicago, IL - Available Nationwide</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="py-12 px-4" style="background: #050508;">
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Top row -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
+
+      <!-- Logo + slogan -->
+      <div class="text-center md:text-left">
+        <div class="flex items-center justify-center md:justify-start gap-3 mb-3">
+          <div class="flex items-end gap-0.5 h-6">
+            <span class="waveform-bar" style="height:10px; animation-delay:0.0s"></span>
+            <span class="waveform-bar" style="height:20px; animation-delay:0.1s"></span>
+            <span class="waveform-bar" style="height:16px; animation-delay:0.2s"></span>
+            <span class="waveform-bar" style="height:24px; animation-delay:0.3s"></span>
+            <span class="waveform-bar" style="height:14px; animation-delay:0.4s"></span>
+          </div>
+          <span class="font-display text-2xl tracking-widest text-white">DJ MARIO <span class="text-gradient-purple-blue">McQUAY</span></span>
+        </div>
+        <p class="text-gray-500 italic text-sm tracking-widest">"Music that moves you..."</p>
+      </div>
+
+      <!-- Social icons -->
+      <div class="flex items-center gap-4">
+        <!-- Instagram -->
+        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full flex items-center justify-center border border-neon-purple text-neon-purple transition-all hover:bg-neon-purple hover:text-white"
+           style="background: rgba(179,71,255,0.08);">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a href="#" aria-label="TikTok" class="w-10 h-10 rounded-full flex items-center justify-center border border-neon-pink text-neon-pink transition-all hover:bg-neon-pink hover:text-white"
+           style="background: rgba(255,45,120,0.08);">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.23 8.23 0 0 0 4.8 1.52V6.69a4.84 4.84 0 0 1-1.03-.0z"/></svg>
+        </a>
+        <!-- Soundcloud -->
+        <a href="#" aria-label="SoundCloud" class="w-10 h-10 rounded-full flex items-center justify-center border border-neon-blue text-neon-blue transition-all hover:bg-neon-blue hover:text-white"
+           style="background: rgba(0,212,255,0.08);">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M1.175 12.225c-.017 0-.034.002-.05.004-.044.008-.083.028-.119.055-.036.027-.068.06-.094.1-.026.038-.047.08-.06.124-.012.042-.018.086-.018.13v1.986c0 .04.006.08.018.118.012.038.032.072.06.102.026.028.056.05.092.066.036.016.074.025.114.025h.048c.04 0 .08-.01.116-.028.036-.018.068-.044.094-.077.026-.032.046-.07.058-.11.012-.042.018-.086.018-.13v-1.986c0-.042-.006-.084-.018-.124-.012-.04-.032-.076-.058-.107-.026-.03-.056-.055-.092-.072-.036-.017-.074-.026-.11-.026zm1.838-.555c-.063 0-.124.012-.18.037-.057.024-.108.06-.152.104-.044.044-.08.097-.106.155-.026.058-.04.12-.04.184v2.872c0 .064.014.126.04.184.026.058.062.11.106.154.044.044.095.08.152.104.056.025.117.037.18.037.06 0 .12-.012.174-.037.055-.024.104-.06.146-.104.042-.044.075-.096.098-.154.022-.058.033-.12.033-.184v-2.872c0-.064-.01-.126-.033-.184-.023-.058-.056-.11-.098-.155-.042-.044-.09-.08-.146-.104-.054-.025-.114-.037-.174-.037zm19.817 2.04c-.038-1.63-1.382-2.94-3.042-2.94-.496 0-.964.122-1.375.338-.504-2.43-2.667-4.255-5.258-4.255-2.953 0-5.348 2.395-5.348 5.348 0 .234.015.465.044.692h-.044c-1.337 0-2.42 1.083-2.42 2.42 0 1.337 1.083 2.42 2.42 2.42h14.86c1.112 0 2.014-.902 2.014-2.014 0-.908-.602-1.674-1.43-1.92l-.02-.09z"/></svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full flex items-center justify-center border border-neon-purple text-neon-purple transition-all hover:bg-neon-purple hover:text-white"
+           style="background: rgba(179,71,255,0.08);">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="#" aria-label="YouTube" class="w-10 h-10 rounded-full flex items-center justify-center border border-neon-pink text-neon-pink transition-all hover:bg-neon-pink hover:text-white"
+           style="background: rgba(255,45,120,0.08);">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Nav links row -->
+    <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 mb-8">
+      <a href="#hero"         class="text-xs tracking-widest text-gray-500 hover:text-neon-purple uppercase transition-colors">Home</a>
+      <a href="#about"        class="text-xs tracking-widest text-gray-500 hover:text-neon-purple uppercase transition-colors">About</a>
+      <a href="#testimonials" class="text-xs tracking-widest text-gray-500 hover:text-neon-purple uppercase transition-colors">Reviews</a>
+      <a href="#gallery"      class="text-xs tracking-widest text-gray-500 hover:text-neon-purple uppercase transition-colors">Gallery</a>
+      <a href="#contact"      class="text-xs tracking-widest text-gray-500 hover:text-neon-purple uppercase transition-colors">Book Now</a>
+    </div>
+
+    <!-- Divider -->
+    <div class="section-divider mb-6"></div>
+
+    <!-- Copyright -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center">
+      <p class="text-gray-600 text-xs tracking-wide">
+        &copy; 2026 DJ Mario McQuay. All rights reserved.
+      </p>
+      <p class="text-gray-700 text-xs tracking-wide">
+        St. Louis, MO - Chicago, IL &nbsp;|&nbsp; Music that moves you...
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════
+     VANILLA JS
+══════════════════════════════════════════ -->
+<script>
+  /* ── Mobile menu toggle ── */
+  const hamburger   = document.getElementById('hamburger');
+  const mobileMenu  = document.getElementById('mobile-menu');
+  const hamOpen     = document.getElementById('ham-open');
+  const hamClose    = document.getElementById('ham-close');
+  let menuOpen = false;
+
+  hamburger.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    mobileMenu.classList.toggle('open', menuOpen);
+    hamOpen.style.display  = menuOpen ? 'none'  : 'block';
+    hamClose.style.display = menuOpen ? 'block' : 'none';
+  });
+
+  function closeMobileMenu() {
+    menuOpen = false;
+    mobileMenu.classList.remove('open');
+    hamOpen.style.display  = 'block';
+    hamClose.style.display = 'none';
+  }
+
+  /* ── Form submit handler ── */
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('form-success');
+    const submitBtn = form.querySelector('button[type="submit"]');
+
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      form.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
+      success.classList.remove('hidden');
+      submitBtn.textContent = 'Send Booking Request ✦';
+      submitBtn.disabled = false;
+      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 1200);
+  }
+
+  /* ── Floating particles ── */
+  (function spawnParticles() {
+    const container = document.getElementById('particles');
+    const colors = ['#b347ff', '#00d4ff', '#ff2d78'];
+    const count = 22;
+
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 4 + 1;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const left  = Math.random() * 100;
+      const dur   = Math.random() * 14 + 10;
+      const delay = Math.random() * 14;
+
+      p.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        background: ${color};
+        left: ${left}%;
+        bottom: -20px;
+        animation-duration: ${dur}s;
+        animation-delay: ${delay}s;
+      `;
+      container.appendChild(p);
+    }
+  })();
+
+  /* ── Sticky nav active state ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.remove('text-neon-blue');
+          link.classList.add('text-gray-400');
+          if (link.getAttribute('href') === '#' + entry.target.id) {
+            link.classList.remove('text-gray-400');
+            link.classList.add('text-neon-blue');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
