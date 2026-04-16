@@ -972,11 +972,22 @@
   function handleSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('contact-form');
+    const formData = new FormData(form);
+    
     const success = document.getElementById('form-success');
     const submitBtn = form.querySelector('button[type="submit"]');
 
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
+
+    fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+    })
+    .then(() => console.log("Form successfully submitted"))
+    .catch(error => alert(error));
+    
 
     setTimeout(() => {
       form.querySelectorAll('input, select, textarea').forEach(el => el.value = '');
