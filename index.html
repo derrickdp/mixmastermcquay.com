@@ -285,7 +285,55 @@
       color: #b347ff;
       font-weight: 600;
     }
+    .mixcloud-promo {
+      padding: 4rem 1.5rem;
+      text-align: center;
+      background-color: #0d0d0d; /* swap for your section bg variable */
+      color: #f5f5f5;
+    }
+    
+    .mixcloud-promo__inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .mixcloud-promo__icon {
+      color: #d4af37; /* gold accent - swap for your accent variable */
+      margin-bottom: 1rem;
+    }
+    
+    .mixcloud-promo__title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+    
+    .mixcloud-promo__text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #c9c9c9;
+      margin-bottom: 2rem;
+    }
+    
+    .mixcloud-promo__btn {
+      display: inline-block;
+      padding: 0.85rem 2rem;
+      border: 1px solid #d4af37;
+      border-radius: 999px;
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    
+    .mixcloud-promo__btn:hover {
+      background-color: #d4af37;
+      color: #0d0d0d;
+    }
   </style>
+
 </head>
 <body>
 
@@ -903,7 +951,43 @@
 </section>
 
 <div class="section-divider"></div>
+<!-- Mixcloud Promo Section -->
+<section id="mixcloud" class="relative py-20 px-6 text-center scanlines overflow-hidden">
+  <div class="hero-grid absolute inset-0"></div>
 
+  <div class="relative max-w-2xl mx-auto" style="z-index: 2;">
+    <p class="section-label mb-4">On The Airwaves</p>
+
+    <h3 class="text-3xl md:text-4xl font-black mb-4 glow-purple">
+      Hear the <span class="text-gradient-purple-blue">Mixes</span>
+    </h3>
+
+    <p class="text-base md:text-lg mb-8" style="color:#a8a6c0;">
+      Full-length sets from weddings, clubs, and private events —
+      streaming free on Mixcloud.
+    </p>
+
+    <!-- Waveform decoration -->
+    <div class="flex justify-center items-end gap-1 mb-8" style="height: 32px;">
+      <span class="waveform-bar" style="height: 18px; animation-delay: 0s;"></span>
+      <span class="waveform-bar" style="height: 28px; animation-delay: 0.15s;"></span>
+      <span class="waveform-bar" style="height: 14px; animation-delay: 0.3s;"></span>
+      <span class="waveform-bar" style="height: 32px; animation-delay: 0.45s;"></span>
+      <span class="waveform-bar" style="height: 20px; animation-delay: 0.6s;"></span>
+      <span class="waveform-bar" style="height: 26px; animation-delay: 0.75s;"></span>
+      <span class="waveform-bar" style="height: 16px; animation-delay: 0.9s;"></span>
+    </div>
+
+    
+      href="https://www.mixcloud.com/djmixmastermcquay/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn-neon"
+    >
+      Listen on Mixcloud
+    </a>
+  </div>
+</section>
 
 <!-- ══════════════════════════════════════════
      FOOTER
